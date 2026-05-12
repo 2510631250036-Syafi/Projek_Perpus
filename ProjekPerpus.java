@@ -61,6 +61,9 @@ public class ProjekPerpus {
                     cariBukubin();
                     break;
                 case 7:
+                    bubbleSortAsc();
+                    break;
+                case 8:
                     cariKategori();
                     break;
                 case 8:
@@ -309,6 +312,45 @@ static void cariKategori() {
         System.out.println("Kategori buku tidak ditemukan");
     }
 }
-    
+    static void bubbleSortAsc() {
+
+    System.out.println("\n=== SORTING NAMA BUKU (A-Z) ===");
+
+    for (int i = 0; i < jumlahData - 1; i++) {
+
+        for (int j = 0; j < jumlahData - i - 1; j++) {
+
+            // Sorting berdasarkan judul buku
+            if (dataBuku[j].judul.compareToIgnoreCase(dataBuku[j + 1].judul) > 0) {
+
+                Buku sementara = dataBuku[j];
+                dataBuku[j] = dataBuku[j + 1];
+                dataBuku[j + 1] = sementara;
+            }
+        }
     }
+
+    System.out.println("\n=== DATA BUKU SETELAH SORTING ===");
+
+    System.out.println("================================================");
+    System.out.println("ID | Judul | Kategori | Stok");
+    System.out.println("================================================");
+
+    for (int i = 0; i < jumlahData; i++) {
+
+        if (dataBuku[i].aktif == true) {
+
+            System.out.println(
+                dataBuku[i].id + " | " +
+                dataBuku[i].judul + " | " +
+                dataBuku[i].kategori + " | " +
+                dataBuku[i].stok
+            );
+        }
+    }
+
+    System.out.println("================================================");
+}
+    }
+
     
