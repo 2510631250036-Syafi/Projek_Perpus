@@ -1,79 +1,80 @@
 import java.util.Scanner;
 
 class Buku {
-    int id;
-    String judul;
-    String kategori;
-    int stok;
-    boolean aktif;
+        int id;
+        String judul;
+        String kategori;
+        int stok;
+        boolean aktif;
 
-    Buku(int id, String judul, String kategori, int stok) {
-        this.id = id;
-        this.judul = judul;
-        this.kategori = kategori;
-        this.stok = stok;
-        this.aktif = true;
+        Buku(int id, String judul, String kategori, int stok) {
+            this.id = id;
+            this.judul = judul;
+            this.kategori = kategori;
+            this.stok = stok;
+            this.aktif = true;
+        }
     }
-}
 
-public class ProjekPerpus {
-    static Scanner input = new Scanner(System.in);
-    static Buku[] dataBuku = new Buku[100];
-    static int jumlahData = 0;
+    public class ProjekPerpus {
+        static Scanner input = new Scanner(System.in);
+        static Buku[] dataBuku = new Buku[100];
+        static int jumlahData = 0;
 
-    public static void main(String[] args) {
-        isiDataAwal(); 
+        public static void main(String[] args) {
+            isiDataAwal(); 
 
-        int pilihan;
+            int pilihan;
 
-        do {
-            System.out.println("\n=== SISTEM MANAJEMEN PERPUSTAKAAN DIGITAL ===");
-            System.out.println("1. Tambah Data Buku");
-            System.out.println("2. Tampilkan Semua Buku");
-            System.out.println("3. Edit Data Buku Berdasarkan ID");
-            System.out.println("4. Hapus Data Buku Berdasarkan ID");
-            System.out.println("5. Cari buku berdasarkan nama");
-            System.out.println("6. Cari buku berdasarkan ID");
-            System.out.println("7. Cari buku berdasarkan kategori");
-            System.out.println("8. Keluar");
-            System.out.print("Pilih menu: ");
+            do {
+                System.out.println("\n=== SISTEM MANAJEMEN PERPUSTAKAAN DIGITAL ===");
+                System.out.println("1. Tambah Data Buku");
+                System.out.println("2. Tampilkan Semua Buku");
+                System.out.println("3. Edit Data Buku Berdasarkan ID");
+                System.out.println("4. Hapus Data Buku Berdasarkan ID");
+                System.out.println("5. Cari buku berdasarkan nama");
+                System.out.println("6. Cari buku berdasarkan ID");
+                System.out.println("7. Cari buku berdasarkan kategori");
+                System.out.println("8. Urutkan buku berdasarkan ID");
+                System.out.println("9. Keluar");
+                System.out.print("Pilih menu: ");
 
-            pilihan = input.nextInt();
-            input.nextLine();
+                pilihan = input.nextInt();
+                input.nextLine();
 
-            switch (pilihan) {
-                case 1:
-                    tambahBuku();
-                    break;
-                case 2:
-                    tampilkanBuku();
-                    break;
-                case 3:
-                    editBuku();
-                    break;
-                case 4:
-                    hapusBuku();
-                    break;
-                case 5:
-                    cariBuku();
-                    break;
-                case 6:
-                    cariBukubin();
-                    break;
-                case 7:
-                    bubbleSortAsc();
-                    break;
-                case 8:
-                    cariKategori();
-                    break;
-                case 9:
-                    System.out.println("Program selesai, Terima Kasih.");
-                default:
+                switch (pilihan) {
+                    case 1:
+                        tambahBuku();
+                        break;
+                    case 2:
+                        tampilkanBuku();
+                        break;
+                    case 3:
+                        editBuku();
+                        break;
+                    case 4:
+                        hapusBuku();
+                        break;
+                    case 5:
+                        cariBukuLin();
+                        break;
+                    case 6:
+                        cariBukubin();
+                        break;
+                    case 7:
+                        cariKategori();
+                        break;
+                    case 8:
+                        bubbleSortid();
+                        break;
+                    case 9:
+                        System.out.println("Program selesai, Terima Kasih.");
+                    default:
                     System.out.println("Pilihan tidak valid.");
-            }
+                }
 
-        } while (pilihan != 7);
-    }
+            } while (pilihan != 9);
+        }
 
     static void isiDataAwal() {
         dataBuku[jumlahData++] = new Buku( 1, "Algoritma dan Pemrograman", "Teknologi", 10);
@@ -115,17 +116,17 @@ public class ProjekPerpus {
     static void tambahBuku() {
         System.out.println("\n=== TAMBAH DATA BUKU ===");
 
-        System.out.print("Masukkan ID Buku: ");
+        System.out.print("Masukan ID Buku: ");
         int id = input.nextInt();
         input.nextLine();
 
-        System.out.print("Masukkan Judul Buku: ");
+        System.out.print("Masukan Judul Buku: ");
         String judul = input.nextLine();
 
-        System.out.print("Masukkan Kategori Buku: ");
+        System.out.print("Masukan Kategori Buku: ");
         String kategori = input.nextLine();
 
-        System.out.print("Masukkan Stok" Buku: ");
+        System.out.print("Masukan Stok Buku: ");
         int stok = input.nextInt();
         input.nextLine();
 
@@ -205,11 +206,11 @@ public class ProjekPerpus {
         System.out.println("Data tidak ditemukan.");
     }
 
-    static void cariBuku() {
+    static void cariBukuLin() {
  
         System.out.println("\n=== MENCARI BUKU ===");
 
-        System.out.println("Masukkan nama buku: ");
+        System.out.println("Masukan nama buku: ");
         String cari = input.nextLine();
 
         boolean ditemukan = false;
@@ -239,7 +240,7 @@ public class ProjekPerpus {
 
     System.out.println("\n=== CARI ID BUKU (BINARY SEARCH) ===");
 
-    System.out.print("Masukkan ID Buku: ");
+    System.out.print("Masukan ID Buku: ");
     int cari = input.nextInt();
 
     int awal = 0;
@@ -248,30 +249,22 @@ public class ProjekPerpus {
     boolean ditemukan = false;
 
     while (awal <= akhir) {
-
         int tengah = (awal + akhir) / 2;
 
         if (dataBuku[tengah].id == cari &&
             dataBuku[tengah].aktif == true) {
+                System.out.println("\nBuku ditemukan");
+                System.out.println("----------------------");
+                System.out.println("ID       : " + dataBuku[tengah].id);
+                System.out.println("Judul    : " + dataBuku[tengah].judul);
+                System.out.println("Kategori : " + dataBuku[tengah].kategori);
+                System.out.println("Stok     : " + dataBuku[tengah].stok);
 
-            System.out.println("\nBuku ditemukan");
-            System.out.println("----------------------");
-            System.out.println("ID       : " + dataBuku[tengah].id);
-            System.out.println("Judul    : " + dataBuku[tengah].judul);
-            System.out.println("Kategori : " + dataBuku[tengah].kategori);
-            System.out.println("Stok     : " + dataBuku[tengah].stok);
-
-            ditemukan = true;
-            break;
-        }
-
-        else if (cari > dataBuku[tengah].id) {
-
+                ditemukan = true;
+                break;
+            }else if (cari > dataBuku[tengah].id) {
             awal = tengah + 1;
-        }
-
-        else {
-
+            }else {
             akhir = tengah - 1;
         }
     }
@@ -280,13 +273,13 @@ public class ProjekPerpus {
 
         System.out.println("Buku tidak ditemukan");
     }
-    
 }
+
 static void cariKategori() {
 
     System.out.println("\n=== CARI BUKU BERDASARKAN KATEGORI ===");
 
-    System.out.print("Masukkan kategori buku: ");
+    System.out.print("Masukan kategori buku: ");
     String kategori = input.nextLine();
 
     boolean ditemukan = false;
@@ -312,42 +305,39 @@ static void cariKategori() {
         System.out.println("Kategori buku tidak ditemukan");
     }
 }
-    static void bubbleSortAsc() {
+    static void bubbleSortid() {
+        System.out.println("\n=== SORTING ID BUKU ASCENDING ===");
 
-    System.out.println("\n=== SORTING NAMA BUKU (A-Z) ===");
+        for (int i = 0; i < jumlahData - 1; i++) {
 
-    for (int i = 0; i < jumlahData - 1; i++) {
+            for (int j = 0; j < jumlahData - i - 1; j++) {
 
-        for (int j = 0; j < jumlahData - i - 1; j++) {
+                if (dataBuku[j].id > dataBuku[j + 1].id) {
 
-            if (dataBuku[j].judul.compareToIgnoreCase(dataBuku[j + 1].judul) > 0) {
-
-                Buku sementara = dataBuku[j];
-                dataBuku[j] = dataBuku[j + 1];
-                dataBuku[j + 1] = sementara;
+                    Buku temp = dataBuku[j];
+                    dataBuku[j] = dataBuku[j + 1];
+                    dataBuku[j + 1] = temp;
+                }
             }
         }
-    }
 
-    System.out.println("\n=== DATA BUKU SETELAH SORTING ===");
+        System.out.println("\n=== DATA BUKU SETELAH SORTING ===");
 
-    System.out.println("================================================");
-    System.out.println("ID | Judul | Kategori | Stok");
-    System.out.println("================================================");
+        System.out.println("================================================");
+        System.out.println("ID | Judul | Kategori | Stok");
+        System.out.println("================================================");
 
-    for (int i = 0; i < jumlahData; i++) {
+        for (int i = 0; i < jumlahData; i++) {
+            if (dataBuku[i].aktif == true) {
 
-        if (dataBuku[i].aktif == true) {
-
-            System.out.println(
-                dataBuku[i].id + " | " +
-                dataBuku[i].judul + " | " +
-                dataBuku[i].kategori + " | " +
-                dataBuku[i].stok
-            );
+                System.out.println(
+                    dataBuku[i].id + " | " +
+                    dataBuku[i].judul + " | " +
+                    dataBuku[i].kategori + " | " +
+                    dataBuku[i].stok
+                );
+            }
         }
-    }
-
-    System.out.println("================================================");
+        System.out.println("================================================");
     }
 }
