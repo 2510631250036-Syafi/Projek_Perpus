@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.io.*;
 class Buku {
         int id;
         String judul;
@@ -43,9 +43,11 @@ class Buku {
                 System.out.println("11.Update Status buku (Dipinjam/tersedia)");
                 System.out.println("12.Status ketersediaan buku ");
                 System.out.println("13 statistik data buku ");
-                System.out.println("14. Keluar ");               
+                System.out.println("14. Save Data Buku");
+                System.out.println("15. Load Data Buku");
+                System.out.println("16. Keluar");
 
-                System.out.print("Pilih menu:  ");
+                System.out.print("Pilih menu:");
 
                 pilihan = input.nextInt();
                 input.nextLine();
@@ -91,12 +93,20 @@ class Buku {
                         statistikData();
                         break;
                     case 14:
+                        saveData();
+                        break;
+                    case 15:
+                        loadData();
+                        break;
+                    case 16:
                         System.out.println("Program selesai, Terima Kasih.");
+                        break;
+
                     default:
-                    System.out.println("Pilihan tidak valid.");
+                        System.out.println("Pilihan tidak valid.");
                 }
 
-            } while (pilihan != 14);
+            } while (pilihan != 16);
         }
 
         static void isiDataAwal() {
@@ -540,5 +550,71 @@ class Buku {
     System.out.printf("Persentase Tersedia   : %.2f%%\n", persenTersedia);
     System.out.printf("Persentase Dipinjam   : %.2f%%\n", persenDipinjam);
     }
+ static void saveData() {
 
+    try {
+
+        FileWriter fw = new FileWriter("dataBuku.txt");
+
+        for (int i = 0; i < jumlahData; i++) {
+
+            if (dataBuku[i].aktif == true) {
+
+                fw.write(
+                    dataBuku[i].id + ";" +
+                    dataBuku[i].judul + ";" +
+                    dataBuku[i].kategori + ";" +
+                    dataBuku[i].stok + ";" +
+                    dataBuku[i].status + "\n"
+                );
+            }
+        }
+
+        fw.close();
+
+        System.out.println("Data berhasil disimpan ke file.");
+
+    } catch (IOException e) {
+
+        System.out.println("Terjadi kesalahan saat menyimpan data.");
+    }
+}
+
+static void loadData() {
+
+    try {
+
+        File file = new File("dataBuku.txt");
+
+        Scanner bacaFile = new Scanner(file);
+
+        jumlahData = 0;
+
+        while (bacaFile.hasNextLine()) {
+
+            String data = bacaFile.nextLine();
+
+            String[] pecah = data.split(";");
+
+            int id = Integer.parseInt(pecah[0]);
+            String judul = pecah[1];
+            String kategori = pecah[2];
+            int stok = Integer.parseInt(pecah[3]);
+            String status = pecah[4];
+
+            dataBuku[jumlahData] = new Buku(id, judul, kategori, stok);
+            dataBuku[jumlahData].status = status;
+
+            jumlahData++;
+        }
+
+        bacaFile.close();
+
+        System.out.println("Data berhasil di-load dari file.");
+
+    } catch (FileNotFoundException e) {
+
+        System.out.println("File data tidak ditemukan.");
+    }
+}
 }
