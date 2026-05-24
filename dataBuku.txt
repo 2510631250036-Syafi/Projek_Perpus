@@ -28,3 +28,4 @@
 28;Ekonomi Mikro;Ekonomi;8;tersedia
 29;Ekonomi Makro;Ekonomi;7;tersedia
 30;Kewirausahaan;Ekonomi;13;tersedia
+31;tes;sains;11;tersedia

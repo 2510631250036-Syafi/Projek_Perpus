@@ -146,6 +146,22 @@ class Buku {
             dataBuku[jumlahData++] = new Buku(30, "Kewirausahaan", "Ekonomi", 12);
         }
 
+static void tampilHeader() {
+        System.out.println("=================================================================================================");
+        System.out.printf("%-5s %-35s %-15s %-10s %-12s\n",
+                "ID", "Judul", "Kategori", "Stok", "Status");
+        System.out.println("=================================================================================================");
+    }
+
+    static void tampilBaris(Buku b) {
+        System.out.printf("%-5d %-35s %-15s %-10d %-12s\n",
+                b.id,
+                b.judul,
+                b.kategori,
+                b.stok,
+                b.status);
+    }
+
         static void tambahBuku() {
             System.out.println("\n=== TAMBAH DATA BUKU ===");
 
@@ -168,32 +184,28 @@ class Buku {
             System.out.println("Data buku berhasil ditambahkan.");
         }
 
-        static void tampilkanBuku() {
-            System.out.println("\n=== DAFTAR BUKU ===");
+     static void tampilkanBuku() {
+    System.out.println("\n=== DAFTAR BUKU ===");
 
-            if (jumlahData == 0) {
-                System.out.println("Belum ada data buku.");
-                return;
-            }
-        
-
-            System.out.println("===============================================");
-            System.out.println("   ID   |   Judul   |   Kategori   |    Stok   ");
-            System.out.println("===============================================");
-
-            for (int i = 0; i < jumlahData; i++) {
-                if (dataBuku[i].aktif == true) {
-                    System.out.println(
-                        dataBuku[i].id + " | " +
-                        dataBuku[i].judul + "         | " +
-                        dataBuku[i].kategori + "                 |" +
-                        dataBuku[i].stok
-                    );
-                }
-            }
-
-        System.out.println("===============================================");
+    if (jumlahData == 0) {
+        System.out.println("Belum ada data buku.");
+        return;
     }
+        tampilHeader();
+    for (int i = 0; i < jumlahData; i++) {
+        if (dataBuku[i].aktif == true) {
+
+            System.out.printf("%-5d %-35s %-15s %-10d %-12s\n",
+                    dataBuku[i].id,
+                    dataBuku[i].judul,
+                    dataBuku[i].kategori,
+                    dataBuku[i].stok,
+                    dataBuku[i].status);
+        }
+    }
+
+    System.out.println("=====================================================================================================");
+}
 
     static void editBuku() {
         System.out.println("\n=== EDIT DATA BUKU ===");
@@ -252,12 +264,8 @@ class Buku {
         if (dataBuku[i].aktif == true && mengandung(dataBuku[i].judul, cari)) {
 
             System.out.println("\nBuku ditemukan:");
-            System.out.println("--------------------------------");
-            System.out.println("ID       : " + dataBuku[i].id);
-            System.out.println("Judul    : " + dataBuku[i].judul);
-            System.out.println("Kategori : " + dataBuku[i].kategori);
-            System.out.println("Stok     : " + dataBuku[i].stok);
-
+                tampilHeader();
+                tampilBaris(dataBuku[i]);
             ditemukan = true;
         }
     }
@@ -320,12 +328,8 @@ static boolean mengandung(String teks, String cari) {
             if (dataBuku[tengah].id == cari &&
                 dataBuku[tengah].aktif == true) {
                     System.out.println("\nBuku ditemukan");
-                    System.out.println("----------------------");
-                    System.out.println("ID       : " + dataBuku[tengah].id);
-                    System.out.println("Judul    : " + dataBuku[tengah].judul);
-                    System.out.println("Kategori : " + dataBuku[tengah].kategori);
-                    System.out.println("Stok     : " + dataBuku[tengah].stok);
-
+                    tampilHeader();
+                    tampilBaris(dataBuku[tengah]);
                     ditemukan = true;
                     break;
                 }else if (cari > dataBuku[tengah].id) {
@@ -352,11 +356,8 @@ static boolean mengandung(String teks, String cari) {
         if (dataBuku[i].aktif == true &&
             kategoriSama(dataBuku[i].kategori, kategori)) {
                 System.out.println("\nBuku ditemukan");
-                System.out.println("----------------------------");
-                System.out.println("ID       : " + dataBuku[i].id);
-                System.out.println("Judul    : " + dataBuku[i].judul);
-                System.out.println("Kategori : " + dataBuku[i].kategori);
-                System.out.println("Stok     : " + dataBuku[i].stok);
+                tampilHeader();
+                tampilBaris(dataBuku[i]);
                 ditemukan = true;
             }
         }
@@ -393,22 +394,13 @@ static boolean mengandung(String teks, String cari) {
             }
         }
 
-        System.out.println("\n=== BUKU SETELAH SORTING ===");
-        System.out.println("================================================");
-        System.out.println("ID | Judul | Kategori | Stok");
-        System.out.println("================================================");
-
+        tampilHeader();
         for (int i = 0; i < jumlahData; i++) {
             if (dataBuku[i].aktif == true) {
-                System.out.println(
-                    dataBuku[i].id + " | " +
-                    dataBuku[i].judul + " | " +
-                    dataBuku[i].kategori + " | " +
-                    dataBuku[i].stok
-                );
+                tampilBaris(dataBuku[i]);
             }
         }
-        System.out.println("================================================");
+       System.out.println("=====================================================================================================");
     }
 
     static void selectionSortJudul() {
@@ -454,21 +446,15 @@ static boolean mengandung(String teks, String cari) {
         }
 
         System.out.println("\n=== BUKU SETELAH SORTING ===");
-        System.out.println("================================================");
-        System.out.println("ID | Judul | Kategori | Stok");
-        System.out.println("================================================");
+        
+        tampilHeader();
 
         for (int i = 0; i < jumlahData; i++) {
             if (dataBuku[i].aktif == true) {
-                System.out.println(
-                    dataBuku[i].id + " | " +
-                    dataBuku[i].judul + " | " +
-                    dataBuku[i].kategori + " | " +
-                    dataBuku[i].stok
-                );
+                tampilBaris(dataBuku[i]);
             }
         }
-        System.out.println("================================================");
+       System.out.println("=====================================================================================================");
     }
 
     static void bubbleSortStok() {
@@ -485,21 +471,15 @@ static boolean mengandung(String teks, String cari) {
         }
 
         System.out.println("\n=== BUKU SETELAH SORTING STOK DESC ===");
-        System.out.println("================================================");
-        System.out.println("ID | Judul | Kategori | Stok");
-        System.out.println("================================================");
-
+        
+        tampilHeader();
+        
         for (int i = 0; i < jumlahData; i++) {
             if (dataBuku[i].aktif == true) {
-                System.out.println(
-                    dataBuku[i].id + " | " +
-                    dataBuku[i].judul + " | " +
-                    dataBuku[i].kategori + " | " +
-                    dataBuku[i].stok
-                );
+                tampilBaris(dataBuku[i]);
             }
         }
-        System.out.println("================================================");
+       System.out.println("=====================================================================================================");
     }
     
     static void updateStatus() {
